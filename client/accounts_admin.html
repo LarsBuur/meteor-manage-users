@@ -2,25 +2,100 @@
  <div class="ui transition  segment">
     <div class="ui header">User administration</div>
       <div class="input-group">
-            <input type="text" class="form-control search-input-filter" value="{{searchFilter}}">
+
             <span class="input-group-btn">
                 <button class="ui button" type="button"><span><i class="ui search icon"></i></span></button>
                 <button class="ui button" type="button" data-action="updateRoles" data-toggle="modal">Manage Roles</button>
                 <button class="ui button" type="button" data-action="addUser" data-toggle="modal" ><i class="ui plus icon"></i> Add User</button>
             </span>
+          <div class="ui small statistic">
+              <div class="value">
+                  {{userCount}}
+              </div>
+              <div class="label">
+                  Users
+              </div>
+          </div>
       </div>
+
+
+     <div class="ui form segment">
+         <p>Every event fires a seaching action</p>
+         <div class="four fields">
+             <div class="field">
+                 <label>Search</label>
+                 <input placeholder="Seach string" class="form-control search-input-filter" type="text" value="{{searchFilter}}">
+             </div>
+             <div class="field">
+                 <label>Gender</label>
+                 <div class="ui labeled icon dropdown selection">
+                     <i class="filter icon"></i>
+                     <input type="hidden" name="gender">
+                     <div class="default text">...</div>
+                     <i class="dropdown icon"></i>
+                     <div class="menu">
+                         <div class="item" data-value="">...</div>
+                         <div class="item" data-value="male">Male</div>
+                         <div class="item" data-value="female">Female</div>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="field">
+                 <label>Occupation</label>
+                 <div class="ui labeled icon dropdown selection">
+                     <i class="filter icon"></i>
+                     <input type="hidden" name="gender">
+                     <div class="default text">...</div>
+                     <i class="dropdown icon"></i>
+                     <div class="menu">
+                         <div class="item" data-value="">...</div>
+                         <div class="item" data-value="male">Male</div>
+                         <div class="item" data-value="female">Female</div>
+                     </div>
+                 </div>
+             </div>
+
+             <div class="field">
+                 <label>Country</label>
+             <div class="ui fluid search selection dropdown">
+
+                 <input type="hidden" name="country">
+                 <i class="dropdown icon"></i>
+                 <div class="default text">Select Country</div>
+                 <div class="menu">
+                     <div class="item" data-value="ad">...</div>
+                     <div class="item" data-value="ad"><i class="ad flag"></i>Denmark</div>
+                     <div class="item" data-value="ae"><i class="ae flag"></i>Sweden</div>
+                     <div class="item" data-value="af"><i class="af flag"></i>Norway</div>
+                     <div class="item" data-value="ag"><i class="ag flag"></i>Finland</div>
+                     <div class="item" data-value="zm"><i class="zm flag"></i>UK</div>
+                     <div class="item" data-value="zw"><i class="zw flag"></i>Netherlands</div>
+                 </div>
+             </div>
+
+                 </div>
+         </div>
+     </div>
+
+
+
       <table class='ui sortable table segment'>
           <thead>
               <tr>
                   <th></th>
                   <th class="ascending">Name</th>
                   <th>Email</th>
-                  <th>UserId</th>
+                  <!--th>UserId</th-->
                   <th>Roles</th>
                   <th class="ascending">Points</th>
               </tr>
           </thead>
           <tbody>
+
+
+
+
               {{#each users}}
                   <tr class="{{#if myself _id}}warning{{/if}}">
                       <td class="userActionIcons">
@@ -32,14 +107,14 @@
                         {{/unless}}
                       </td>
                       <td>
-                          {{#if profile.name}}
-                              {{profile.name}}
+                          {{#if profile.firstName}}
+                              {{profile.firstName}} {{profile.lastName}}
                           {{else}}
                               {{email}}
                           {{/if}}
                       </td>
                       <td>{{email}}</td>
-                      <td>{{_id}}</td>
+                      <!--<td>{{_id}}</td-->
                       <td>{{roles}}</td>
                       <td class="ui float right">{{points}}</td>
                   </tr>

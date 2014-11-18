@@ -1,6 +1,6 @@
 Package.describe({
 	summary: "A roles based account management system - restyled for semantic-ui",
-  version: "0.3.0",
+  version: "0.3.2",
   git: "git@github.com:LarsBuur/meteor-manage-users.git"
 });
 
@@ -9,8 +9,9 @@ Package.on_use(function (api, where) {
 	api.use('standard-app-packages', ['client', 'server']);
 	api.use("alanning:roles@1.2.13", ['client', 'server']);
 
-	api.add_files('libs/user_query.js', ['client', 'server']);
+	api.use("meteorhacks:npm@1.2.0", ['server']);
 
+	api.add_files('libs/user_query.js', ['client', 'server']);
 	api.add_files('client/startup.js', 'client');
 	api.add_files('client/accounts_admin.html', 'client');
 	api.add_files('client/accounts_admin.js', 'client');

@@ -1,6 +1,17 @@
 Template.accountsAdmin.helpers({
     users: function () {
+        Meteor.call('countUsers', Session.get("userFilter"), function (error, result){
+            if(error){
+                console.log(error);
+            }else{
+                Session.set("userCount", result);
+            }
+        });
         return filteredUserQuery(Meteor.userId(), Session.get("userFilter"));
+    },
+
+    userCount : function(){
+        return Session.get("userCount");
     },
 
     email: function () {
@@ -104,4 +115,6 @@ Template.accountsAdmin.rendered = function () {
 
     searchElement[0].focus();
     searchElement[0].setSelectionRange(pos, pos);
+
+    $('.dropdown').dropdown({transition: 'drop'});
 };
